@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "307135942672",
+    "project_id": "fashionalleydatabase",
+    "storage_bucket": "fashionalleydatabase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307135942672:android:b5ff7e52d52c231b8afa95",
+        "android_client_info": {
+          "package_name": "com.example.fashion_alley"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307135942672-fttrscrgri629lv4raa3o4e93mimffjr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA07J2IbxJzaP3hvTZ50X7zoBgupvuJVt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307135942672-fttrscrgri629lv4raa3o4e93mimffjr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
