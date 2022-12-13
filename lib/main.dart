@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Giriş",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 18.0, //asfg
                   ),
                 ),
               ),

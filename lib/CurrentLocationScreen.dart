@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CurrentLocationScreen extends StatefulWidget {
+  //son güncelleme
   const CurrentLocationScreen({Key? key}) : super(key: key);
 
   @override
