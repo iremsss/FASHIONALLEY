@@ -1,3 +1,6 @@
+import 'package:fashion_alley/category/alt.dart';
+import 'package:fashion_alley/category/elbise.dart';
+import 'package:fashion_alley/category/ust.dart';
 import 'package:fashion_alley/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +18,14 @@ class _CategoryState extends State<Category> {
         scrollDirection: Axis.horizontal,
         children: [
           CategoryProducts(
+            press: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) =>  AltGiyim()));
+
+            },
             image: 'assets/images/bot.png',
             text: 'ALT',
-            press: () {},
+            
           ),
           SizedBox(
             width: 20,
@@ -25,7 +33,10 @@ class _CategoryState extends State<Category> {
           CategoryProducts(
             image: 'assets/images/top.png',
             text: 'ÜST',
-            press: () {},
+            press: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) =>  UstGiyim()));
+            },
           ),
           SizedBox(
             width: 20,
@@ -33,7 +44,10 @@ class _CategoryState extends State<Category> {
           CategoryProducts(
             image: 'assets/images/dress.png',
             text: 'ELBİSE',
-            press: () {},
+            press: () {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) =>  Elbise()));
+            },
           ),
         ],
       ),

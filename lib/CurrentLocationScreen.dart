@@ -1,90 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class CurrentLocationScreen extends StatefulWidget {
-  //son güncelleme
-  const CurrentLocationScreen({Key? key}) : super(key: key);
-
+class Location extends StatefulWidget {
+ 
   @override
-  _CurrentLocationScreenState createState() => _CurrentLocationScreenState();
+   State<Location> createState() => _LocationState();
 }
 
-class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
-  late GoogleMapController googleMapController;
-
-  static const CameraPosition initialCameraPosition = CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14);
-
-  Set<Marker> markers = {};
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text("Mağazalar"),
-        centerTitle: true,
-      ),
-      body: GoogleMap(
-        initialCameraPosition: initialCameraPosition,
-        markers: markers,
-        zoomControlsEnabled: false,
-        mapType: MapType.normal,
-        onMapCreated: (GoogleMapController controller) {
-          googleMapController = controller;
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () async {
-          Position position = await _determinePosition();
-
-          googleMapController.animateCamera(CameraUpdate.newCameraPosition(
-              CameraPosition(
-                  target: LatLng(position.latitude, position.longitude),
-                  zoom: 14)));
-
-          markers.clear();
-
-          markers.add(Marker(
-              markerId: const MarkerId('currentLocation'),
-              position: LatLng(position.latitude, position.longitude)));
-
-          setState(() {});
-        },
-        backgroundColor: Colors.black,
-        label: const Text("Mevcut Konum"),
-        icon: const Icon(Icons.location_history),
-      ),
-    );
-  }
-
+class _LocationState extends State<Location> {
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
-
     if (!serviceEnabled) {
-      return Future.error('Location services are disabled');
+      return Future.error("Location services are disabled.");
     }
 
     permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          "Location permissions are permantly denied. we cannot request permissions.");
+    }
 
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-
-      if (permission == LocationPermission.denied) {
-        return Future.error("Location permission denied");
+      if (permission != LocationPermission.whileInUse &&
+          permission != LocationPermission.always) {
+        return Future.error(
+            "Location permissions are denied (actual value: $permission).");
       }
     }
 
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error('Location permissions are permanently denied');
-    }
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+  }
 
-    Position position = await Geolocator.getCurrentPosition();
-
-    return position;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Get Current Location"),
+      ),
+      body: Center(
+        child: FutureBuilder(
+          future: _determinePosition(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final Position position = snapshot.data as Position;
+              return Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Lat : ${position.latitude}"),
+                    Text("Lng : ${position.longitude}"),
+                  ],
+                ),
+              );
+            } else if (snapshot.hasError) {
+              
+              return Container(
+                child: Text(snapshot.error.toString()),
+              );
+            }
+            return CircularProgressIndicator();
+          },
+        ),
+      ),
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_alley/constants.dart';
+import 'package:fashion_alley/favorite.dart';
 import 'package:fashion_alley/urun.dart';
 import 'package:flutter/material.dart';
 
@@ -45,19 +46,17 @@ class _homeScreenState extends State<homeScreen> {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) =>  Favorite()));
+
+                },
                 icon: Icon(
                   Icons.favorite_border_outlined,
                   size: 25,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.shopping_cart,
-                  size: 25,
-                ),
-              ),
+              
               IconButton(
                 onPressed: () {},
                 icon: Icon(
