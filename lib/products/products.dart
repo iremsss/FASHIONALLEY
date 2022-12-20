@@ -18,7 +18,7 @@ class _ProductsState extends State<Products> {
     CollectionReference urunRef = _firestore.collection('urun');
 
     return Container(
-      height: 250,
+      height: 150,
       decoration: BoxDecoration(
         color: Colors.white,
       ),
@@ -44,25 +44,28 @@ class _ProductsState extends State<Products> {
                             crossAxisCount: 2, childAspectRatio: 0.70),
                         itemCount: listodDocumentSnapshot.length,
                         itemBuilder: (context, index) {
-                          return Column(children: [
-                            Container(
-                              height: 150,
-                              width: 160,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30)),
-                              child: Image.network(
-                                  '${listodDocumentSnapshot[index]['image1']}'),
-                            ),
-                            ListTile(
-                              title: Text(
-                                  '${listodDocumentSnapshot[index]['isim']}'),
-                              subtitle: Text(
-                                '${listodDocumentSnapshot[index]['fiyat']}',
+                          return Column(
+                            children: [
+                              Container(
+                                height: 150,
+                                width: 160,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Image.network(
+                                    '${listodDocumentSnapshot[index]['image1']}'),
                               ),
-                              trailing: newMethod('04'),
-                            )
-                          ]);
+                              ListTile(
+                                title: Text(
+                                    '${listodDocumentSnapshot[index]['isim']}'),
+                                subtitle: Text(
+                                  '${listodDocumentSnapshot[index]['fiyat']}',
+                                ),
+                                trailing: newMethod(
+                                    '${listodDocumentSnapshot[index]['id']}'),
+                              )
+                            ],
+                          );
                         },
                       ),
                     );
@@ -88,10 +91,13 @@ class _ProductsState extends State<Products> {
           color: kPrimaryColor, borderRadius: BorderRadius.circular(30)),
       child: IconButton(
         onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
               builder: (context) => ProductDetailPage(
-                    urun_id: a,
-                  )));
+                urun_id: a,
+              ),
+            ),
+          );
         },
         icon: Icon(
           Icons.arrow_forward_outlined,
