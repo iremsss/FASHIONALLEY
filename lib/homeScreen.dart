@@ -5,7 +5,8 @@ import 'package:fashion_alley/urun.dart';
 import 'package:flutter/material.dart';
 
 class homeScreen extends StatefulWidget {
-  const homeScreen({Key? key}) : super(key: key);
+  String mail;
+  homeScreen({required this.mail});
 
   @override
   State<homeScreen> createState() => _homeScreenState();
@@ -17,6 +18,8 @@ class _homeScreenState extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     CollectionReference urunRef = _firestore.collection('urun');
+    CollectionReference personRef = _firestore.collection('Person');
+    String mail = widget.mail;
 
     return Scaffold(
       backgroundColor: kBGColor,
@@ -45,18 +48,20 @@ class _homeScreenState extends State<homeScreen> {
                   size: 25,
                 ),
               ),
+              Text(
+                '${mail}',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+              ),
               IconButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) =>  Favorite()));
-
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => Favorite()));
                 },
                 icon: Icon(
                   Icons.favorite_border_outlined,
                   size: 25,
                 ),
               ),
-              
               IconButton(
                 onPressed: () {},
                 icon: Icon(

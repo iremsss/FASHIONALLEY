@@ -24,7 +24,9 @@ class _UrunBodyState extends State<UrunBody> {
           padding: const EdgeInsets.all(4.0),
           child: ListView(
             children: [
-              customAppBar(),
+              customAppBar(
+                isim: "irem",
+              ),
               SizedBox(height: 5),
               SearchBar(),
               SizedBox(height: 5),

@@ -1,5 +1,6 @@
 import 'package:fashion_alley/loadingScreen.dart';
 import 'package:fashion_alley/homeScreen.dart';
+import 'package:fashion_alley/signup.dart';
 import 'package:fashion_alley/urun.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -112,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
-                hintText: "e-mail",
+                hintText: "E-mail",
                 prefixIcon: Icon(Icons.mail, color: Colors.black),
               ),
             ),
@@ -123,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: passwordController,
               obscureText: true,
               decoration: const InputDecoration(
-                hintText: "şifre",
+                hintText: "Şifre",
                 prefixIcon: Icon(Icons.lock, color: Colors.black),
               ),
             ),
@@ -136,9 +137,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 15),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => RegisterPage()));
+                },
                 child: const Text(
-                  'Şifrenizi mi unuttunuz?',
+                  'Üye Ol',
                   style: TextStyle(
                       color: Color(0x96000000),
                       fontSize: 18.0,
@@ -165,14 +169,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       context: context);
                   if (user != null) {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const homeScreen()));
+                        builder: (context) => homeScreen(
+                              mail: emailController.text,
+                            )));
                   }
                 },
                 child: const Text(
                   "Giriş",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0, //asfg
+                    fontSize: 18.0,
                   ),
                 ),
               ),

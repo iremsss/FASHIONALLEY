@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class customAppBar extends StatelessWidget {
-  const customAppBar({Key? key}) : super(key: key);
+  String isim;
+  customAppBar({required this.isim});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class customAppBar extends StatelessWidget {
         Column(
           children: [
             Text(
-              'Pelinsu',
+              '${isim}',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
             ),
             Text(
