@@ -16,7 +16,6 @@ class _ProductsState extends State<Products> {
 
   @override
   Widget build(BuildContext context) {
-    String uid = widget.uid;
     CollectionReference urunRef = _firestore.collection('urun');
 
     return Container(

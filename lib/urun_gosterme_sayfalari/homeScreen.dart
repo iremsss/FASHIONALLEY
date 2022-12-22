@@ -16,7 +16,6 @@ class _homeScreenState extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     String uid = widget.uid;
-    print(uid);
     List<dynamic> favListt;
 
     return Scaffold(

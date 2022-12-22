@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: 200,
             ),
             const Text(
-              "Giriş yap",
+              "Giriş Yap",
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 24.0,

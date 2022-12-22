@@ -19,17 +19,15 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
   Widget build(BuildContext context) {
     String uid = widget.uid;
     String urun_id = widget.urun_id;
-    print("ürün id si : ");
-    print(urun_id);
     final urunRef = FirebaseFirestore.instance.collection('urun');
 
     ekle() {
       var collection = FirebaseFirestore.instance.collection('Person');
       collection
-          .doc(uid) // <-- Document ID
+          .doc(uid)
           .update({
             'favlar': FieldValue.arrayUnion([urun_id])
-          }) // <-- Add data
+          })
           .then((_) => print('Added'))
           .catchError((error) => print('Add failed: $error'));
     }
@@ -37,10 +35,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     kaldir() {
       var collection = FirebaseFirestore.instance.collection('Person');
       collection
-          .doc(uid) // <-- Document ID
+          .doc(uid)
           .update({
             'favlar': FieldValue.arrayRemove([urun_id])
-          }) // <-- Add data
+          })
           .then((_) => print('Deleted'))
           .catchError((error) => print('Add failed: $error'));
     }
@@ -103,8 +101,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                             '${listodDocumentSnapshot[int.parse(urun_id) - 1]['fiyat']}  TL',
                                             textAlign: TextAlign.left,
                                             style: const TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w400,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w500,
                                                 color: kTextColor),
                                           ),
                                           IconButton(
@@ -113,7 +111,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                               ekle();
                                             },
                                             icon: Icon(
-                                              Icons.favorite_outline_rounded,
+                                              Icons.favorite,
                                               size: 40,
                                               color: kPrimaryColor,
                                             ),
@@ -138,7 +136,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         child: Text(
                                           "Satın Alma Seçenekleri",
                                           style: TextStyle(
-                                              fontSize: 11,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.w500,
                                               color: kTextColor),
                                         ),
@@ -163,8 +161,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                               borderRadius:
                                                   BorderRadius.circular(10.0)),
                                           onPressed: () {
-                                            Navigator.of(context)
-                                                .pushReplacement(
+                                            Navigator.of(context).push(
                                               MaterialPageRoute(
                                                 builder: (context) =>
                                                     ProductDetailPage(
@@ -178,7 +175,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                             "Kombini Tamamla",
                                             style: TextStyle(
                                               color: kTextColor,
-                                              fontSize: 10.0,
+                                              fontSize: 20.0,
                                             ),
                                           ),
                                         ),

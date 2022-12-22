@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fashion_alley/constants/constants.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/urun_gosterme_sayfalari/productDetail.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Widget product_icon(String web, String loc, BuildContext context) {
@@ -23,7 +21,7 @@ Widget product_icon(String web, String loc, BuildContext context) {
           },
           icon: Icon(
             Icons.location_on,
-            size: 15,
+            size: 25,
             color: kPrimaryColor,
           ),
         ),
@@ -33,7 +31,7 @@ Widget product_icon(String web, String loc, BuildContext context) {
           },
           icon: Icon(
             Icons.web_asset_outlined,
-            size: 15,
+            size: 25,
             color: kPrimaryColor,
           ),
         ),
