@@ -1,38 +1,31 @@
+//burada alt giyim ürünleri bulunur.
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/constants.dart';
-import 'package:fashion_alley/products/header.dart';
-import 'package:fashion_alley/products/productDetail.dart';
+import 'package:fashion_alley/constants/constants.dart';
 import 'package:flutter/material.dart';
+import '../constants/header.dart';
 
-class Arama extends StatefulWidget {
-  String aranan;
-  Arama({required this.aranan});
-
+class Alt extends StatefulWidget {
+  const Alt({Key? key}) : super(key: key);
   @override
-  State<Arama> createState() => _AramaState();
+  State<Alt> createState() => _AltState();
 }
 
-class _AramaState extends State<Arama> {
-  final _firestor = FirebaseFirestore.instance;
-
+class _AltState extends State<Alt> {
   @override
   Widget build(BuildContext context) {
-    String aranan = widget.aranan;
-    CollectionReference urunRef = _firestor.collection('urun');
-    print(aranan);
     return Card(
       color: kBGColor,
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
-            header('Arama Sonuçları', context),
+            header('Alt Giyim', context),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('urun')
-                    .orderBy('isim')
-                    .startAt([aranan]).endAt([aranan + '\uf8ff']).snapshots(),
+                    .where('tür', isEqualTo: 'alt')
+                    .snapshots(),
                 builder: (BuildContext context, AsyncSnapshot asyncSnapshot) {
                   if (asyncSnapshot.hasError) {
                     return Center(
@@ -42,7 +35,6 @@ class _AramaState extends State<Arama> {
                     if (asyncSnapshot.hasData) {
                       List<DocumentSnapshot> listodDocumentSnapshot =
                           asyncSnapshot.data.docs;
-
                       return Container(
                         color: arkaplan,
                         height: 250,
@@ -65,7 +57,7 @@ class _AramaState extends State<Arama> {
                                 subtitle: Text(
                                   '${listodDocumentSnapshot[index]['fiyat']}',
                                 ),
-                                //trailing: Icon(Icons.add),
+                                trailing: Icon(Icons.add),
                               )
                             ]);
                           },

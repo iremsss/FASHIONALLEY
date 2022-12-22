@@ -1,18 +1,18 @@
-import 'package:fashion_alley/category/category.dart';
-import 'package:fashion_alley/products/products.dart';
-import 'package:fashion_alley/searchBar.dart';
-import 'package:fashion_alley/slider/slider.dart';
+import 'package:fashion_alley/constants/category.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/products.dart';
+import 'package:fashion_alley/constants/searchBar.dart';
+import 'package:fashion_alley/constants/slider.dart';
 import 'package:flutter/material.dart';
 
-class UrunBody extends StatefulWidget {
+class Urun extends StatefulWidget {
   String uid;
-  UrunBody({required this.uid});
+  Urun({required this.uid});
 
   @override
-  State<UrunBody> createState() => _UrunBodyState();
+  State<Urun> createState() => _UrunState();
 }
 
-class _UrunBodyState extends State<UrunBody> {
+class _UrunState extends State<Urun> {
   @override
   Widget build(BuildContext context) {
     String uid = widget.uid;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fashion_alley/constants.dart';
+import 'package:fashion_alley/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/products/productDetail.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/productDetail.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Widget product_icon(String web, String loc, BuildContext context) {

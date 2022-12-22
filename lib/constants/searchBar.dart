@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'category/arama_sonuclari.dart';
+import '../urun_gosterme_sayfalari/arama_sonuclari.dart';
 import 'constants.dart';
 
 class SearchBar extends StatefulWidget {

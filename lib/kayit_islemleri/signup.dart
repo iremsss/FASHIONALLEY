@@ -1,9 +1,10 @@
+//burada kayıt olma ve validation kontrolu yapılır
 import 'package:fashion_alley/main.dart';
-import 'package:fashion_alley/products/header.dart';
-import 'package:fashion_alley/signup_auth.dart';
+import 'package:fashion_alley/constants/header.dart';
+import 'package:fashion_alley/kayit_islemleri/signup_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import '../constants/constants.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

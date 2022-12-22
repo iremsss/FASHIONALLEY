@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/constants.dart';
-import 'package:fashion_alley/products/productDetail.dart';
+import 'package:fashion_alley/constants/constants.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/productDetail.dart';
 import 'package:flutter/material.dart';
 
-import '../products/header.dart';
+import '../constants/header.dart';
 
-class Elbise extends StatefulWidget {
-  const Elbise({Key? key}) : super(key: key);
+class Ust extends StatefulWidget {
+  const Ust({Key? key}) : super(key: key);
 
   @override
-  State<Elbise> createState() => _ElbiseState();
+  State<Ust> createState() => _UstState();
 }
 
-class _ElbiseState extends State<Elbise> {
+class _UstState extends State<Ust> {
   final _firestor = FirebaseFirestore.instance;
 
   @override
@@ -25,12 +25,12 @@ class _ElbiseState extends State<Elbise> {
         padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
-            header('Elbise', context),
+            header('Üst Giyim', context),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('urun')
-                    .where('tür', isEqualTo: 'elbise')
+                    .where('tür', isEqualTo: 'üst')
                     .snapshots(),
                 builder: (BuildContext context, AsyncSnapshot asyncSnapshot) {
                   if (asyncSnapshot.hasError) {

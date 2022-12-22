@@ -1,10 +1,10 @@
+//kayıt olma fonksiyonu burada bulunur
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
 
   //kayıt ol fonksiyonu
   Future<User?> createPerson(String name, String email, String password) async {

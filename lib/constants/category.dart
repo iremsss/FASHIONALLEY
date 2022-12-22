@@ -1,7 +1,7 @@
-import 'package:fashion_alley/category/alt.dart';
-import 'package:fashion_alley/category/elbise.dart';
-import 'package:fashion_alley/category/ust.dart';
-import 'package:fashion_alley/constants.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/alt.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/elbise.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/ust.dart';
+import 'package:fashion_alley/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class Category extends StatefulWidget {

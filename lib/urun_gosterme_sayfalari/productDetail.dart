@@ -1,10 +1,10 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/constants.dart';
-import 'package:fashion_alley/products/icons.dart';
+import 'package:fashion_alley/constants/constants.dart';
+import 'package:fashion_alley/constants/icons.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fashion_alley/products/header.dart';
+import 'package:fashion_alley/constants/header.dart';
 
 class ProductDetailPage extends StatefulWidget {
   String urun_id;

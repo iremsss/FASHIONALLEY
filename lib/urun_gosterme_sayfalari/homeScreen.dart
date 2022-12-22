@@ -1,33 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/constants.dart';
-import 'package:fashion_alley/favorite.dart';
+import 'package:fashion_alley/constants/constants.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/favorite.dart';
 import 'package:fashion_alley/main.dart';
-import 'package:fashion_alley/urun.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/urun.dart';
 import 'package:flutter/material.dart';
 
 class homeScreen extends StatefulWidget {
   String uid;
   homeScreen({required this.uid});
-
   @override
   State<homeScreen> createState() => _homeScreenState();
 }
 
 class _homeScreenState extends State<homeScreen> {
-  final _firestore = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
-    CollectionReference urunRef = _firestore.collection('urun');
-    CollectionReference personRef = _firestore.collection('Person');
     String uid = widget.uid;
     print(uid);
     List<dynamic> favListt;
-    List<int> favList = [];
 
     return Scaffold(
       backgroundColor: kBGColor,
-      body: UrunBody(uid: uid),
+      body: Urun(uid: uid),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
             color: Colors.white,

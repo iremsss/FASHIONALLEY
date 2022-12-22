@@ -1,7 +1,7 @@
-import 'package:fashion_alley/constants.dart';
-import 'package:fashion_alley/products/productDetail.dart';
-import 'package:fashion_alley/products/products.dart';
-import 'package:fashion_alley/urun.dart';
+import 'package:fashion_alley/constants/constants.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/productDetail.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/products.dart';
+import 'package:fashion_alley/urun_gosterme_sayfalari/urun.dart';
 import 'package:flutter/material.dart';
 
 Widget header(String title, BuildContext context) {

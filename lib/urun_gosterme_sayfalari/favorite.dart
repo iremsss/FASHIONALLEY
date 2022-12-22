@@ -1,29 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/constants.dart';
 import 'package:flutter/material.dart';
-import '../products/header.dart';
 
-class Alt extends StatefulWidget {
-  const Alt({Key? key}) : super(key: key);
+import '../constants/header.dart';
+import '../constants/constants.dart';
+
+class Favori extends StatefulWidget {
+  String uid;
+  List<int> favList;
+  Favori({required this.uid, required this.favList});
+
   @override
-  State<Alt> createState() => _AltState();
+  State<Favori> createState() => _FavoriState();
 }
 
-class _AltState extends State<Alt> {
+class _FavoriState extends State<Favori> {
   @override
   Widget build(BuildContext context) {
+    List<int> favList = widget.favList;
+
     return Card(
       color: kBGColor,
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
-            header('Alt Giyim', context),
+            header('Favoriler', context),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('urun')
-                    .where('tür', isEqualTo: 'alt')
+                    .where('id', whereIn: favList)
                     .snapshots(),
                 builder: (BuildContext context, AsyncSnapshot asyncSnapshot) {
                   if (asyncSnapshot.hasError) {
@@ -45,8 +51,8 @@ class _AltState extends State<Alt> {
                           itemBuilder: (context, index) {
                             return Column(children: [
                               Container(
-                                padding: EdgeInsets.all(5),
-                                height: 200,
+                                height: 150,
+                                width: 160,
                                 child: Image.network(
                                     '${listodDocumentSnapshot[index]['image1']}'),
                               ),
@@ -56,7 +62,6 @@ class _AltState extends State<Alt> {
                                 subtitle: Text(
                                   '${listodDocumentSnapshot[index]['fiyat']}',
                                 ),
-                                trailing: Icon(Icons.add),
                               )
                             ]);
                           },

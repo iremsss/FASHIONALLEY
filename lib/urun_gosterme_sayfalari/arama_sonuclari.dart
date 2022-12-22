@@ -1,36 +1,33 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_alley/constants/constants.dart';
+import 'package:fashion_alley/constants/header.dart';
 import 'package:flutter/material.dart';
 
-import '../products/header.dart';
-import 'constants.dart';
-
-class Favori extends StatefulWidget {
-  String uid;
-  List<int> favList;
-  Favori({required this.uid, required this.favList});
+class Arama extends StatefulWidget {
+  String aranan;
+  Arama({required this.aranan});
 
   @override
-  State<Favori> createState() => _FavoriState();
+  State<Arama> createState() => _AramaState();
 }
 
-class _FavoriState extends State<Favori> {
+class _AramaState extends State<Arama> {
   @override
   Widget build(BuildContext context) {
-    List<int> favList = widget.favList;
-
+    String aranan = widget.aranan;
     return Card(
       color: kBGColor,
       child: Padding(
         padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
-            header('Favoriler', context),
+            header('Arama Sonuçları', context),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('urun')
-                    .where('id', whereIn: favList)
-                    .snapshots(),
+                    .orderBy('isim')
+                    .startAt([aranan]).endAt([aranan + '\uf8ff']).snapshots(),
                 builder: (BuildContext context, AsyncSnapshot asyncSnapshot) {
                   if (asyncSnapshot.hasError) {
                     return Center(
@@ -40,6 +37,7 @@ class _FavoriState extends State<Favori> {
                     if (asyncSnapshot.hasData) {
                       List<DocumentSnapshot> listodDocumentSnapshot =
                           asyncSnapshot.data.docs;
+
                       return Container(
                         color: arkaplan,
                         height: 250,
@@ -51,8 +49,8 @@ class _FavoriState extends State<Favori> {
                           itemBuilder: (context, index) {
                             return Column(children: [
                               Container(
-                                height: 150,
-                                width: 160,
+                                padding: EdgeInsets.all(5),
+                                height: 200,
                                 child: Image.network(
                                     '${listodDocumentSnapshot[index]['image1']}'),
                               ),
@@ -62,6 +60,7 @@ class _FavoriState extends State<Favori> {
                                 subtitle: Text(
                                   '${listodDocumentSnapshot[index]['fiyat']}',
                                 ),
+                                //trailing: Icon(Icons.add),
                               )
                             ]);
                           },

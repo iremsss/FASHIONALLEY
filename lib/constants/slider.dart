@@ -1,6 +1,9 @@
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:fashion_alley/constants.dart';
+import 'package:fashion_alley/constants/constants.dart';
 import 'package:flutter/material.dart';
+/*
+  Anasayfadaki slider, burada uygulamanın kendi resimleri gösteriliyor.
+ */
 
 class FotoSlider extends StatefulWidget {
   @override

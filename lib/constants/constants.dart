@@ -1,3 +1,5 @@
+//Burada tüm uygulamada kullanılan temanın renklerine karar verilir.
+
 import 'package:flutter/material.dart';
 
 const kPrimaryColor = Color(0xfffac8c8);
