@@ -20,8 +20,9 @@ class _UstState extends State<Ust> {
     CollectionReference urunRef = _firestor.collection('urun');
 
     return Card(
+      color: kBGColor,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
             header('Üst Giyim', context),
@@ -42,6 +43,7 @@ class _UstState extends State<Ust> {
                           asyncSnapshot.data.docs;
 
                       return Container(
+                        color: arkaplan,
                         height: 250,
                         child: GridView.builder(
                           gridDelegate:
@@ -51,11 +53,8 @@ class _UstState extends State<Ust> {
                           itemBuilder: (context, index) {
                             return Column(children: [
                               Container(
-                                height: 150,
-                                width: 160,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30)),
+                                padding: EdgeInsets.all(5),
+                                height: 200,
                                 child: Image.network(
                                     '${listodDocumentSnapshot[index]['image1']}'),
                               ),

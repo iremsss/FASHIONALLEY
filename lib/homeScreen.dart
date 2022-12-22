@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_alley/constants.dart';
 import 'package:fashion_alley/favorite.dart';
+import 'package:fashion_alley/main.dart';
 import 'package:fashion_alley/urun.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,8 @@ class _homeScreenState extends State<homeScreen> {
     CollectionReference personRef = _firestore.collection('Person');
     String uid = widget.uid;
     print(uid);
+    List<dynamic> favListt;
+    List<int> favList = [];
 
     return Scaffold(
       backgroundColor: kBGColor,
@@ -51,10 +54,26 @@ class _homeScreenState extends State<homeScreen> {
               ),
               IconButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Favori(uid: uid)),
-                  );
+                  setState(() {
+                    FirebaseFirestore.instance
+                        .collection("Person")
+                        .doc(uid)
+                        .get()
+                        .then((value) {
+                      favListt = value.get('favlar');
+                      List<int> favList =
+                          favListt.map((e) => int.parse(e)).toList();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Favori(
+                            uid: uid,
+                            favList: favList,
+                          ),
+                        ),
+                      );
+                    });
+                  });
                 },
                 icon: Icon(
                   Icons.favorite_border_outlined,
@@ -62,9 +81,14 @@ class _homeScreenState extends State<homeScreen> {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyApp()),
+                  );
+                },
                 icon: Icon(
-                  Icons.account_circle,
+                  Icons.logout,
                   size: 25,
                 ),
               ),

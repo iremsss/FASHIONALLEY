@@ -13,6 +13,8 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+      color: arkaplan,
       height: 100,
       child: ListView(
         scrollDirection: Axis.horizontal,
@@ -26,7 +28,7 @@ class _CategoryState extends State<Category> {
             text: 'ALT',
           ),
           SizedBox(
-            width: 20,
+            width: 10,
           ),
           CategoryProducts(
             image: 'assets/images/top.png',
@@ -37,7 +39,7 @@ class _CategoryState extends State<Category> {
             },
           ),
           SizedBox(
-            width: 20,
+            width: 10,
           ),
           CategoryProducts(
             image: 'assets/images/dress.png',

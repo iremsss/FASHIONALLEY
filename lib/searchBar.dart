@@ -46,7 +46,7 @@ class _SearchBarState extends State<SearchBar> {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide.none,
                       ),
-                      prefixIcon: Icon(Icons.favorite),
+                      prefixIcon: Icon(Icons.favorite, color: kPrimaryColor),
                     ),
                   ),
                 ),

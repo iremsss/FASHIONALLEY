@@ -20,19 +20,13 @@ class _AramaState extends State<Arama> {
     String aranan = widget.aranan;
     CollectionReference urunRef = _firestor.collection('urun');
     print(aranan);
-    header('Arama Sonucları', context);
     return Card(
-      color: kPrimaryColor,
+      color: kBGColor,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 50),
+        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Go back!'),
-            ),
+            header('Arama Sonuçları', context),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
@@ -50,7 +44,7 @@ class _AramaState extends State<Arama> {
                           asyncSnapshot.data.docs;
 
                       return Container(
-                        color: Colors.white,
+                        color: arkaplan,
                         height: 250,
                         child: GridView.builder(
                           gridDelegate:
@@ -60,12 +54,8 @@ class _AramaState extends State<Arama> {
                           itemBuilder: (context, index) {
                             return Column(children: [
                               Container(
-                                padding: EdgeInsets.all(8),
-                                height: 150,
-                                width: 160,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30)),
+                                padding: EdgeInsets.all(5),
+                                height: 200,
                                 child: Image.network(
                                     '${listodDocumentSnapshot[index]['image1']}'),
                               ),

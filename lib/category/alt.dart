@@ -1,26 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_alley/constants.dart';
-import 'package:fashion_alley/products/productDetail.dart';
 import 'package:flutter/material.dart';
 import '../products/header.dart';
 
 class Alt extends StatefulWidget {
   const Alt({Key? key}) : super(key: key);
-
   @override
   State<Alt> createState() => _AltState();
 }
 
 class _AltState extends State<Alt> {
-  final _firestor = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
-    CollectionReference urunRef = _firestor.collection('urun');
-
     return Card(
+      color: kBGColor,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
             header('Alt Giyim', context),
@@ -39,8 +34,8 @@ class _AltState extends State<Alt> {
                     if (asyncSnapshot.hasData) {
                       List<DocumentSnapshot> listodDocumentSnapshot =
                           asyncSnapshot.data.docs;
-
                       return Container(
+                        color: arkaplan,
                         height: 250,
                         child: GridView.builder(
                           gridDelegate:
@@ -50,11 +45,8 @@ class _AltState extends State<Alt> {
                           itemBuilder: (context, index) {
                             return Column(children: [
                               Container(
-                                height: 150,
-                                width: 160,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30)),
+                                padding: EdgeInsets.all(5),
+                                height: 200,
                                 child: Image.network(
                                     '${listodDocumentSnapshot[index]['image1']}'),
                               ),

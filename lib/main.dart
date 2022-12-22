@@ -1,4 +1,3 @@
-import 'package:fashion_alley/loadingScreen.dart';
 import 'package:fashion_alley/homeScreen.dart';
 import 'package:fashion_alley/signup.dart';
 import 'package:fashion_alley/urun.dart';
@@ -144,28 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       MaterialPageRoute(builder: (context) => RegisterPage()));
                 },
                 child: const Text(
-                  'Üye Ol',
-                  style: TextStyle(
-                      color: Color(0x96000000),
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  textStyle: const TextStyle(fontSize: 15),
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Placee(
-                            title: "debneme",
-                          )));
-                },
-                child: const Text(
-                  'KONUM',
+                  'Kayıt Ol',
                   style: TextStyle(
                       color: Color(0x96000000),
                       fontSize: 18.0,
@@ -206,27 +184,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            /*SizedBox(
-              width: double.infinity,
-              child: RawMaterialButton(
-                fillColor: const Color(0xFFD91515),
-                elevation: 0.0,
-                padding: const EdgeInsets.symmetric(vertical: 10.0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0)),
-                onPressed: () async {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const GScreen()));
-                },
-                child: const Text(
-                  "Diğer sayfa",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                  ),
-                ),
-              ),
-            ),*/
           ],
         ),
       ),

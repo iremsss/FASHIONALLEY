@@ -1,3 +1,4 @@
+import 'package:fashion_alley/constants.dart';
 import 'package:fashion_alley/products/productDetail.dart';
 import 'package:fashion_alley/products/products.dart';
 import 'package:fashion_alley/urun.dart';
@@ -19,9 +20,7 @@ Widget header(String title, BuildContext context) {
         title,
         textAlign: TextAlign.right,
         style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 20,
-            color: Color(0xf33d3d3d)),
+            fontWeight: FontWeight.w500, fontSize: 20, color: kTextColor),
       ),
     ],
   );

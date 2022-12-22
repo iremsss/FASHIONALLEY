@@ -22,7 +22,7 @@ class _ProductsState extends State<Products> {
     return Container(
       height: 500,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: arkaplan,
       ),
       child: Column(
         children: [
@@ -51,9 +51,6 @@ class _ProductsState extends State<Products> {
                               Container(
                                 height: 150,
                                 width: 160,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30)),
                                 child: Image.network(
                                     '${listodDocumentSnapshot[index]['image1']}'),
                               ),
@@ -87,7 +84,7 @@ class _ProductsState extends State<Products> {
 
   Container newMethod(String a) {
     return Container(
-      height: 90,
+      height: 30,
       width: 30,
       decoration: BoxDecoration(
           color: kPrimaryColor, borderRadius: BorderRadius.circular(30)),

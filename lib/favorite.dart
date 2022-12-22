@@ -1,56 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_alley/constants.dart';
-import 'package:fashion_alley/products/productDetail.dart';
 import 'package:flutter/material.dart';
 
 import '../products/header.dart';
+import 'constants.dart';
 
 class Favori extends StatefulWidget {
   String uid;
-  Favori({required this.uid});
+  List<int> favList;
+  Favori({required this.uid, required this.favList});
 
   @override
   State<Favori> createState() => _FavoriState();
 }
 
 class _FavoriState extends State<Favori> {
-  final _firestor = FirebaseFirestore.instance;
-
   @override
   Widget build(BuildContext context) {
-    print("favorisayfası");
-    String uid = widget.uid;
-    CollectionReference urunRef = _firestor.collection('urun');
+    List<int> favList = widget.favList;
 
-    List<dynamic> favListt;
-    FirebaseFirestore.instance
-        .collection("Person")
-        .doc(uid)
-        .get()
-        .then((value) {
-      favListt = value.get('favlar');
-      List<int> favList = favListt.map((e) => int.parse(e)).toList();
-      print(favListt);
-      print(favList);
-    });
     return Card(
+      color: kBGColor,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
         child: Column(
           children: [
             header('Favoriler', context),
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.abc_outlined,
-                size: 25,
-              ),
-            ),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('urun')
-                    .where('id', whereIn: [1]).snapshots(),
+                    .where('id', whereIn: favList)
+                    .snapshots(),
                 builder: (BuildContext context, AsyncSnapshot asyncSnapshot) {
                   if (asyncSnapshot.hasError) {
                     return Center(
@@ -60,8 +40,8 @@ class _FavoriState extends State<Favori> {
                     if (asyncSnapshot.hasData) {
                       List<DocumentSnapshot> listodDocumentSnapshot =
                           asyncSnapshot.data.docs;
-
                       return Container(
+                        color: arkaplan,
                         height: 250,
                         child: GridView.builder(
                           gridDelegate:
@@ -73,9 +53,6 @@ class _FavoriState extends State<Favori> {
                               Container(
                                 height: 150,
                                 width: 160,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(30)),
                                 child: Image.network(
                                     '${listodDocumentSnapshot[index]['image1']}'),
                               ),

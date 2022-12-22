@@ -76,8 +76,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       horizontal: 16.0),
                                   child: Column(
                                     children: [
-                                      Text(
-                                          '${listodDocumentSnapshot[int.parse(urun_id) - 1]['renk']}'),
                                       Container(
                                         height: 450,
                                         width: 350,
@@ -146,9 +144,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         ),
                                       ),
                                       Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: product_icon(context),
-                                      ),
+                                          alignment: Alignment.centerLeft,
+                                          child: product_icon(
+                                              '${listodDocumentSnapshot[int.parse(urun_id) - 1]['site']}',
+                                              '${listodDocumentSnapshot[int.parse(urun_id) - 1]['adres']}',
+                                              context)),
                                       const SizedBox(
                                         height: 3.0,
                                       ),
@@ -162,7 +162,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(10.0)),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ProductDetailPage(
+                                                        uid: uid,
+                                                        urun_id:
+                                                            '${listodDocumentSnapshot[int.parse(urun_id) - 1]['kombin_id']}'),
+                                              ),
+                                            );
+                                          },
                                           child: const Text(
                                             "Kombini Tamamla",
                                             style: TextStyle(
