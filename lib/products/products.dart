@@ -4,7 +4,8 @@ import 'package:fashion_alley/products/productDetail.dart';
 import 'package:flutter/material.dart';
 
 class Products extends StatefulWidget {
-  const Products({Key? key}) : super(key: key);
+  String uid;
+  Products({required this.uid});
 
   @override
   State<Products> createState() => _ProductsState();
@@ -15,10 +16,11 @@ class _ProductsState extends State<Products> {
 
   @override
   Widget build(BuildContext context) {
+    String uid = widget.uid;
     CollectionReference urunRef = _firestore.collection('urun');
 
     return Container(
-      height: 150,
+      height: 500,
       decoration: BoxDecoration(
         color: Colors.white,
       ),
@@ -91,12 +93,11 @@ class _ProductsState extends State<Products> {
           color: kPrimaryColor, borderRadius: BorderRadius.circular(30)),
       child: IconButton(
         onPressed: () {
-          Navigator.of(context).pushReplacement(
+          Navigator.push(
+            context,
             MaterialPageRoute(
-              builder: (context) => ProductDetailPage(
-                urun_id: a,
-              ),
-            ),
+                builder: (context) =>
+                    ProductDetailPage(urun_id: a, uid: widget.uid)),
           );
         },
         icon: Icon(

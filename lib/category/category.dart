@@ -19,8 +19,8 @@ class _CategoryState extends State<Category> {
         children: [
           CategoryProducts(
             press: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Alt()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Alt()));
             },
             image: 'assets/images/bot.png',
             text: 'ALT',
@@ -32,8 +32,8 @@ class _CategoryState extends State<Category> {
             image: 'assets/images/top.png',
             text: 'ÜST',
             press: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Ust()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Ust()));
             },
           ),
           SizedBox(
@@ -43,8 +43,8 @@ class _CategoryState extends State<Category> {
             image: 'assets/images/dress.png',
             text: 'ELBİSE',
             press: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Elbise()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => Elbise()));
             },
           ),
         ],

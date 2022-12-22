@@ -8,7 +8,8 @@ import 'package:fashion_alley/products/header.dart';
 
 class ProductDetailPage extends StatefulWidget {
   String urun_id;
-  ProductDetailPage({required this.urun_id});
+  String uid;
+  ProductDetailPage({required this.urun_id, required this.uid});
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
 }
@@ -16,25 +17,33 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState extends State<ProductDetailPage> {
   @override
   Widget build(BuildContext context) {
+    String uid = widget.uid;
     String urun_id = widget.urun_id;
     print("ürün id si : ");
     print(urun_id);
     final urunRef = FirebaseFirestore.instance.collection('urun');
 
-    /*FirebaseFirestore.instance
-        .collection('urun')
-        .doc(urun_id)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        print('Document data: ${documentSnapshot.data()}');
-        print('${documentSnapshot.get('renk')}');
-        urunrengi = documentSnapshot.get('renk');
-        print(urunrengi);
-      } else {
-        print('Document does not exist on the database');
-      }
-    });*/
+    ekle() {
+      var collection = FirebaseFirestore.instance.collection('Person');
+      collection
+          .doc(uid) // <-- Document ID
+          .update({
+            'favlar': FieldValue.arrayUnion([urun_id])
+          }) // <-- Add data
+          .then((_) => print('Added'))
+          .catchError((error) => print('Add failed: $error'));
+    }
+
+    kaldir() {
+      var collection = FirebaseFirestore.instance.collection('Person');
+      collection
+          .doc(uid) // <-- Document ID
+          .update({
+            'favlar': FieldValue.arrayRemove([urun_id])
+          }) // <-- Add data
+          .then((_) => print('Deleted'))
+          .catchError((error) => print('Add failed: $error'));
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -102,10 +111,24 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           ),
                                           IconButton(
                                             padding: EdgeInsets.all(0),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              ekle();
+                                            },
                                             icon: Icon(
                                               Icons.favorite_outline_rounded,
-                                              size: 20,
+                                              size: 40,
+                                              color: kPrimaryColor,
+                                            ),
+                                            alignment: Alignment.centerRight,
+                                          ),
+                                          IconButton(
+                                            padding: EdgeInsets.all(0),
+                                            onPressed: () {
+                                              kaldir();
+                                            },
+                                            icon: Icon(
+                                              Icons.heart_broken,
+                                              size: 40,
                                               color: kPrimaryColor,
                                             ),
                                             alignment: Alignment.centerRight,

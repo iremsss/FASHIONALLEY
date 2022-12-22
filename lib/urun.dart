@@ -9,7 +9,8 @@ import 'constants.dart';
 import 'customAppBar.dart';
 
 class UrunBody extends StatefulWidget {
-  const UrunBody({Key? key}) : super(key: key);
+  String uid;
+  UrunBody({required this.uid});
 
   @override
   State<UrunBody> createState() => _UrunBodyState();
@@ -18,10 +19,11 @@ class UrunBody extends StatefulWidget {
 class _UrunBodyState extends State<UrunBody> {
   @override
   Widget build(BuildContext context) {
+    String uid = widget.uid;
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: [
               customAppBar(
@@ -33,10 +35,7 @@ class _UrunBodyState extends State<UrunBody> {
               FotoSlider(),
               SizedBox(height: 5),
               Category(),
-              Container(
-                height: 200,
-                child: Products(),
-              ),
+              Products(uid: uid)
             ],
           ),
         ),

@@ -140,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textStyle: const TextStyle(fontSize: 15),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => RegisterPage()));
                 },
                 child: const Text(
@@ -159,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textStyle: const TextStyle(fontSize: 15),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Placee(
                             title: "debneme",
                           )));
@@ -193,7 +193,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (user != null) {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => homeScreen(
-                              mail: emailController.text,
+                              uid: user.uid,
                             )));
                   }
                 },
