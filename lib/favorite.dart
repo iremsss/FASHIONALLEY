@@ -18,29 +18,21 @@ class _FavoriState extends State<Favori> {
 
   @override
   Widget build(BuildContext context) {
+    print("favorisayfası");
     String uid = widget.uid;
     CollectionReference urunRef = _firestor.collection('urun');
 
-    List<Offset> favList = <Offset>[];
-
-    /*getdata() async {
-      await FirebaseFirestore.instance
-          .collection("User")
-          .doc(uid)
-          .get()
-          .then((value) {
-        setState(() {
-          // first add the data to the Offset object
-          List.from(value.data()).forEach((element) {
-            Offset data = new Offset(element);
-
-            //then add the data to the List<Offset>, now we have a type Offset
-            favList.add(data);
-          });
-        });
-      });
-    }*/
-
+    List<dynamic> favListt;
+    FirebaseFirestore.instance
+        .collection("Person")
+        .doc(uid)
+        .get()
+        .then((value) {
+      favListt = value.get('favlar');
+      List<int> favList = favListt.map((e) => int.parse(e)).toList();
+      print(favListt);
+      print(favList);
+    });
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -58,8 +50,7 @@ class _FavoriState extends State<Favori> {
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance
                     .collection('urun')
-                    .where('favori', isEqualTo: 'y')
-                    .snapshots(),
+                    .where('id', whereIn: [1]).snapshots(),
                 builder: (BuildContext context, AsyncSnapshot asyncSnapshot) {
                   if (asyncSnapshot.hasError) {
                     return Center(
