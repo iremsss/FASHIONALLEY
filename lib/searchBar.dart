@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 
+import 'category/arama_sonuclari.dart';
 import 'constants.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends StatefulWidget {
   const SearchBar({Key? key}) : super(key: key);
+
+  @override
+  State<SearchBar> createState() => _SearchBarState();
+}
+
+class _SearchBarState extends State<SearchBar> {
+  final myController = TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +37,7 @@ class SearchBar extends StatelessWidget {
                     ],
                   ),
                   child: TextField(
+                    controller: myController,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.symmetric(vertical: 14),
                       enabledBorder: OutlineInputBorder(
@@ -31,7 +46,7 @@ class SearchBar extends StatelessWidget {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide.none,
                       ),
-                      prefixIcon: Icon(Icons.search),
+                      prefixIcon: Icon(Icons.favorite),
                     ),
                   ),
                 ),
@@ -47,9 +62,17 @@ class SearchBar extends StatelessWidget {
                     BoxShadow(color: Colors.black38, blurRadius: 4),
                   ],
                 ),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.sort_by_alpha),
+                child: FloatingActionButton(
+                  backgroundColor: kPrimaryColor,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              Arama(aranan: myController.text)),
+                    );
+                  },
+                  child: const Icon(Icons.search_outlined),
                 ),
               )
             ],

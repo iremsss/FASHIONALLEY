@@ -2,9 +2,6 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_alley/constants.dart';
 import 'package:fashion_alley/products/icons.dart';
-
-import 'package:fashion_alley/products/price_fav.dart';
-import 'package:fashion_alley/products/product_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fashion_alley/products/header.dart';
@@ -17,7 +14,6 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
-  final _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     String urun_id = widget.urun_id;

@@ -6,6 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'Place.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -143,6 +145,27 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: const Text(
                   'Üye Ol',
+                  style: TextStyle(
+                      color: Color(0x96000000),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  textStyle: const TextStyle(fontSize: 15),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => Placee(
+                            title: "debneme",
+                          )));
+                },
+                child: const Text(
+                  'KONUM',
                   style: TextStyle(
                       color: Color(0x96000000),
                       fontSize: 18.0,
